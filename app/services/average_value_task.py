@@ -4,7 +4,7 @@ import csv
 import codecs
 import requests
 
-import app.services.utils as ut
+from app.services import utils
 
 from app.loggers.loggers import get_custom_logger
 
@@ -25,10 +25,17 @@ def get_data_from_google_drive(
         CSV dictionary reader
     """
     logger = get_custom_logger("average_value")
-    url = f"https://drive.google.com/uc?export=download&id={file_id}"
+    url = "https://drive.google.com/uc"
 
     try:
-        response = requests.get(url, timeout=30)
+        response = requests.get(
+            url,
+            params={
+                "export": "download",
+                "id": file_id,
+            },
+            timeout=30,
+        )
         if response.status_code == 200:
             lines_iterator = response.iter_lines()
             return csv.DictReader(
@@ -93,8 +100,8 @@ def output_avg_height_weight(height: float, weight: float) -> None:
         This function does not return anything.
     """
     print("==============Average height and weight of people===============")
-    print(f"Average value of people height: {round(ut.inches_to_cm(height), 2)} cm")
-    print(f"Average value of people weight: {round(ut.pounds_to_kg(weight), 3)} kg")
+    print(f"Average value of people height: {round(utils.inches_to_cm(height), 2)} cm")
+    print(f"Average value of people weight: {round(utils.pounds_to_kg(weight), 3)} kg")
     print("================================================================")
 
 

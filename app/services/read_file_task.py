@@ -15,7 +15,6 @@ def read_file_task() -> None:
         print("======================File content task==========================")
         with open(file_path, encoding="UTF-8") as file:
             print(file.read())
-        file.close()
         print("================================================================")
     else:
         logger.warning(f"File {file_path.name} not found")

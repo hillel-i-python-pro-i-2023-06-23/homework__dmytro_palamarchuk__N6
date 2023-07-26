@@ -40,8 +40,8 @@ def show_astronauts_in_spacestations(stations: dict) -> None:
     -------
     None
     """
-    print("=============================================================")
     for name in stations:
+        print("=============================================================")
         print(f"Astronauts who are on the {name} space station:")
         print(*stations[name], sep="\n")
 

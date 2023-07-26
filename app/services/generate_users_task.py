@@ -8,8 +8,7 @@ from pathlib import PosixPath
 from app.loggers.loggers import get_custom_logger
 from app.services.faker_instance import faker
 from app.config import FILES_OUTPUT_DIR
-from app.Entity.user import User
-from app.services.utils import peek
+from app.entity.user import User
 
 
 def generate_user() -> User:
@@ -54,8 +53,9 @@ def save_user_to_csv(file_path: PosixPath, data: Iterator[User]) -> None:
         List of User entities.
     """
     with open(file_path, "w", newline="", encoding="UTF-8") as csv_file:
-        first_item = peek(data)
-        if first_item is None:
+        try:
+            first_item = next(data)
+        except StopIteration:
             return
 
         fieldnames = first_item.as_dict().keys()

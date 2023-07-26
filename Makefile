@@ -11,8 +11,8 @@ d-homework-i-purge:
 .PHONY: d-run
 # Just run
 d-run:
-	@COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 \
-		docker compose up --build
+	@COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 USER_ID="$(shell id -u)" \
+		docker compose up --build --exit-code-from app
 
 .PHONY: d-stop
 # Stop services

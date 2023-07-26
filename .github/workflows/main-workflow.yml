@@ -31,3 +31,6 @@ jobs:
       - name: Analysing the code with pylint
         run: |
           pylint $(git ls-files '*.py')
+      - name: Build
+        run: |
+          make d-homework-i-run
