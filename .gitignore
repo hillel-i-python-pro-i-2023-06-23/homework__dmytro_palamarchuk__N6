@@ -3,7 +3,7 @@ venv/
 .env
 
 # Cache
-app/__pycache__
+**/__pycache__/**
 
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
@@ -13,3 +13,6 @@ app/__pycache__
 .idea/
 
 docker-compose.override.yml
+
+.DS_Store
+app/.DS_Store
